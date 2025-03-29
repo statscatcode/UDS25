@@ -1,1 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cats & Coding</title>
+    <style>
+        body {
+            background-color: #F5F5DC; /* Light tan background */
+            font-family: Arial, sans-serif;
+        }
+        
+        .header {
+            background-color: #FFC0CB; /* Pink header */
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .content {
+            margin: 20px;
+            padding: 20px;
+            background-color: #F0F0F0; /* Light gray content area */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        .code-block {
+            background-color: #F2F2F2; /* Light gray code block */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .code-block pre {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Cats & Coding</h1>
+    </div>
+    
+    <div class="content">
+        <h2>Welcome to Cats & Coding!</h2>
+        <p>This site is dedicated to all cat lovers who also enjoy coding. Below, you'll find a simple R script using the tidyverse package to analyze cat data.</p>
+        
+        <img class="image" src="https://source.unsplash.com/400x200/?cat" alt="Cat Image">
+        
+        <h3>Example Tidyverse R Code</h3>
+        <div class="code-block">
+            <pre>
+# Load the tidyverse package
+library(tidyverse)
+
+# Create a sample dataset of cats
+cats <- tibble(
+    name = c("Whiskers", "Mittens", "Shadow"),
+    age = c(2, 5, 3),
+    weight = c(4.5, 6.2, 5.1)
+)
+
+# Summarize the average age and weight of the cats
+summary <- cats %>%
+    summarise(
+        avg_age = mean(age),
+        avg_weight = mean(weight)
+    )
+
+# Print the summary
+print(summary)
+            </pre>
+        </div>
+        
+        <p>Feel free to try this code in your R environment and explore more about cats and coding!</p>
+    </div>
+</body>
+</html>
 
