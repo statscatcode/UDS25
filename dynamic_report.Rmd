@@ -1,0 +1,66 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+library(tidyverse)
+library(magick)
+library(iNZightPlots)
+library(glue)
+
+show <- function(expr, plot_width = 800, plot_height = 500) {
+  expr <- deparse(substitute(expr)) %>% paste(collapse = " " %>%
+  str_squish())
+  plot1 <- image_graph(width = plot_width, height = plot_height)
+  parse(text = expr) %>% 
+    eval()
+  nope <- dev.off()
+  plot1[length(plot1)] 
+}
+
+logged_data <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vT2g1s9HENS6jLh0iyWyeDiejAl6CJkWcSPCnGrz7AV7odhndLbIi43K3JJVw0J5k7710mCJmif4ECl/pub?gid=1567696164&single=true&output=csv")
+
+latest_data <- logged_data %>%
+  rename(product_type = 2,
+         num_words = 3,
+         image_display = 4,
+         num_images = 5, 
+         discount = 6,
+         button_click = 7)
+```
+
+```{css}
+body {
+  font-weight: bold;
+  background-color: pink;
+  padding: 30px;
+}
+
+img {
+  max-width: 100%;
+}
+```
+
+## My instagram ads
+
+
+```{r}
+iNZightPlot(data = latest_data,
+            x = image_display) |> 
+  show(450, 300)
+```
+
+```{r}
+per_static <- (100*sum(latest_data$image_display == "static")/length(latest_data$image_display)) %>% round(1)
+
+# glue("{per_static}% of the ads marketed to me on Instagram featured static images.")
+
+```
+
+`r per_static`% of the ads marketed to me on Instagram featured static images.
+
+
+![](https://c.tenor.com/-qBsG1HwR4oAAAAC/tenor.gif)
